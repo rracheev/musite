@@ -24,9 +24,11 @@ async function getSearch() {
         body: JSON.stringify(invest)
     };
     let promise = await fetch('/search', options)
-    return await promise.text()
+    return await promise.json()
 };
 
 async function Search() {
-    document.getElementById("id_albom_img").src =await getSearch()
+    let form= await getSearch()
+    document.getElementById("id_albom_img").src = form.album
+    document.getElementById("id_audio").src = form.music
 };

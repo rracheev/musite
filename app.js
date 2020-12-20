@@ -32,12 +32,12 @@ app.post('/search', JSONParser, function (
     request('https://itunes.apple.com/search?'+str, (err, response, body) => {
         if (err) return res.status(500).send({ message: err });
         //console.log( body);
-        let b =JSON.parse(body)
-        let music=b.results[0]
-        //console.log( music);
+        //let b =JSON.parse(body)
+        let b=JSON.parse(body).results[0]
+        //console.log( b);
         //console.log( music.artworkUrl100);
-        res.send(music.artworkUrl100)
+        console.log(JSON.stringify({album : b.artworkUrl100,music : b.previewUrl}));
+        res.send(JSON.stringify({album : b.artworkUrl100,music : b.previewUrl}))
     });
 })
-//test
 app.listen(3000)
